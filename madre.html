@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ACH_Details - Especial Día de la Madre. Rosas eternas que perduran para siempre.">
+    <title>ACH_Details | Día de la Madre</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/Logo.jpeg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Specific Styles for Mother's Day Screenshot Look */
+        .mday-grid-special {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .mday-card-v2 {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(240, 84, 140, 0.1);
+        }
+
+        .mday-card-v2:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .mday-card-v2 .card-img-container {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .mday-card-v2 .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mday-card-v2 .card-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .mday-card-v2 .card-price-tag {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: var(--bg-card);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .mday-card-v2 .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mday-card-v2 h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--text-heading);
+            margin-bottom: 15px;
+        }
+
+        .mday-card-v2 .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mday-card-v2 .features-list li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mday-card-v2 .features-list li i {
+            color: var(--text-secondary);
+            width: 16px;
+            height: 16px;
+        }
+
+        .mday-card-v2 .price-row {
+            margin-top: auto;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mday-card-v2 .sale-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .mday-card-v2 .old-price {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .btn-mday-special {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-mday-special:hover {
+            background: var(--accent-hover);
+            color: white;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+
+<body class="mday-page">
+
+    <!-- ========== PRELOADER ========== -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo-frame">
+                <img src="images/Logo.jpeg" alt="ACH_Details" class="preloader-logo">
+            </div>
+            <div class="preloader-text">Día de la Madre</div>
+            <div class="preloader-tagline">Rosas para la reina del hogar</div>
+        </div>
+    </div>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-frame">
+                    <img src="images/Logo.jpeg" alt="ACH_Details Logo" class="logo-img">
+                </div>
+                <span class="logo-text">ACH_Details</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="padre.html" class="nav-link-father"><i data-lucide="briefcase"></i> Día del Padre</a></li>
+                <li><a href="madre.html" class="nav-link-special"><i data-lucide="flower-2"></i> Día de la Madre</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button id="theme-toggle" aria-label="Cambiar modo oscuro"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="moon"></i>
+                </button>
+                <button id="music-toggle" aria-label="Reproducir música"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="volume-x"></i>
+                </button>
+                <audio id="bg-audio" src="Perfect.mpeg" autoplay loop></audio>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <header class="hero" id="inicio">
+        <div id="hero-particles"></div>
+        <div class="container hero-content">
+            <div class="hero-text" data-aos="fade-right">
+                <div class="hero-badge">
+                    <i data-lucide="heart"></i>
+                    <span>Especial Día de la Madre 2026</span>
+                </div>
+                <h1>Todo el amor de mamá en un <em>detalle eterno</em></h1>
+                <p>Sorprende a la reina del hogar con rosas que capturan la belleza de tus sentimientos y perduran por años.</p>
+                <div class="hero-cta">
+                    <a href="#catalogo-especial" class="btn btn-primary">
+                        <i data-lucide="flower-2"></i>
+                        Ver Catálogo Especial
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image" data-aos="fade-left">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image-glow"></div>
+                    <img src="images/Kitty.jpg" alt="Especial Día de la Madre" id="hero-img">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MOTHERS DAY SPECIAL CATALOG ========== -->
+    <section class="mday-section" id="catalogo-especial" style="padding: 80px 0;">
+        <div class="container">
+            <div class="section-header">
+                <span class="mday-badge">
+                    <i data-lucide="heart"></i>
+                    Catálogo para Mamá
+                </span>
+                <h2 class="mday-title">Mamá <em>merece lo mejor</em></h2>
+            </div>
+
+            <div class="mday-grid-special">
+                <!-- 1. Modelo Aurora -->
+                <div class="mday-card-v2" data-aos="fade-up">
+                    <div class="card-img-container">
+                        <img src="images/ModeloAurora.jpg" alt="Modelo Aurora">
+                        <div class="card-price-tag">S/ 50</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modelo Aurora</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 6 rosas eternas</li>
+                            <li><i data-lucide="check"></i> Hojas decorativas</li>
+                            <li><i data-lucide="check"></i> Envuelto en papel coreano</li>
+                            <li><i data-lucide="check"></i> Frase para mamá</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 45.00</span>
+                            <span class="old-price">S/ 55.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Modelo%20Aurora" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. Box Lotso -->
+                <div class="mday-card-v2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-img-container">
+                        <img src="images/BoxLotso.jpg" alt="Box Lotso">
+                        <div class="card-badge">⭐ Especial</div>
+                        <div class="card-price-tag">S/ 75</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Box Lotso</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 15 rosas eternas</li>
+                            <li><i data-lucide="check"></i> 1 mariposa</li>
+                            <li><i data-lucide="check"></i> 1 peluche Lotso</li>
+                            <li><i data-lucide="check"></i> 1 topper decorativo</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 75.00</span>
+                            <span class="old-price">S/ 85.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Box%20Lotso" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Modelo Ainara -->
+                <div class="mday-card-v2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-img-container">
+                        <img src="images/ModeloAinara.jpg" alt="Modelo Ainara">
+                        <div class="card-price-tag">S/ 65</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modelo Ainara</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 6 rosas eternas</li>
+                            <li><i data-lucide="check"></i> 1 peluche corderito</li>
+                            <li><i data-lucide="check"></i> Frase en acrílico</li>
+                            <li><i data-lucide="check"></i> 2 bom boom + choco vizzio</li>
+                            <li><i data-lucide="check"></i> Mariposa + topper corazón</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 65.00</span>
+                            <span class="old-price">S/ 75.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Modelo%20Ainara" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. Modelo Valentina -->
+                <div class="mday-card-v2" data-aos="fade-up">
+                    <div class="card-img-container">
+                        <img src="images/ModeloValentina.jpg" alt="Modelo Valentina">
+                        <div class="card-price-tag">S/ 50</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modelo Valentina</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 5 rosas eternas</li>
+                            <li><i data-lucide="check"></i> 1 peluche corderito</li>
+                            <li><i data-lucide="check"></i> 2 bom boom</li>
+                            <li><i data-lucide="check"></i> Envol. papel coreano</li>
+                            <li><i data-lucide="check"></i> Mariposa + frase para mamá</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 50.00</span>
+                            <span class="old-price">S/ 60.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Modelo%20Valentina" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. Box Aitana -->
+                <div class="mday-card-v2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-img-container">
+                        <img src="images/BoxAitana.jpg" alt="Box Aitana">
+                        <div class="card-badge">💝 Completo</div>
+                        <div class="card-price-tag">S/ 75</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Box Aitana</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 15 rosas eternas</li>
+                            <li><i data-lucide="check"></i> Hojas + mariposa + corona</li>
+                            <li><i data-lucide="check"></i> Frase para mamá</li>
+                            <li><i data-lucide="check"></i> 1 chocolate vizzio</li>
+                            <li><i data-lucide="check"></i> 1 topper decorativo</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 75.00</span>
+                            <span class="old-price">S/ 85.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Box%20Aitana" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. Modelo Aura -->
+                <div class="mday-card-v2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-img-container">
+                        <img src="images/ModeloAura.jpg" alt="Modelo Aura">
+                        <div class="card-price-tag">S/ 50</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modelo Aura</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 7 rosas eternas</li>
+                            <li><i data-lucide="check"></i> 9 chocolates Monfer</li>
+                            <li><i data-lucide="check"></i> 1 mariposa</li>
+                            <li><i data-lucide="check"></i> Letrero acrílico</li>
+                            <li><i data-lucide="check"></i> Topper corazón</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 50.00</span>
+                            <span class="old-price">S/ 60.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Modelo%20Aura" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 7. Modelo Aria -->
+                <div class="mday-card-v2" data-aos="fade-up">
+                    <div class="card-img-container">
+                        <img src="images/ModeloAria.jpg" alt="Modelo Aria">
+                        <div class="card-price-tag">S/ 60</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modelo Aria</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 12 rosas eternas</li>
+                            <li><i data-lucide="check"></i> Hojas decorativas</li>
+                            <li><i data-lucide="check"></i> Florero de vidrio</li>
+                            <li><i data-lucide="check"></i> 1 chocolate vizzio</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 60.00</span>
+                            <span class="old-price">S/ 70.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Modelo%20Aria" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 8. Modelo Luana -->
+                <div class="mday-card-v2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-img-container">
+                        <img src="images/ModeloLuana.jpg" alt="Modelo Luana">
+                        <div class="card-badge">Eres ÚNICA</div>
+                        <div class="card-price-tag">S/ 55</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modelo Luana</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 12 rosas eternas</li>
+                            <li><i data-lucide="check"></i> 1 corona de metal</li>
+                            <li><i data-lucide="check"></i> 1 mariposa</li>
+                            <li><i data-lucide="check"></i> Envol. papel coreano</li>
+                            <li><i data-lucide="check"></i> Frase para mamá</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 55.00</span>
+                            <span class="old-price">S/ 65.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Modelo%20Luana" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 9. Modelo Aura Mini -->
+                <div class="mday-card-v2" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-img-container">
+                        <img src="images/ModeloAuraMini.jpg" alt="Modelo Aura Mini">
+                        <div class="card-price-tag">S/ 35</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modelo Aura Mini</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 4 rosas eternas</li>
+                            <li><i data-lucide="check"></i> 1 mariposa</li>
+                            <li><i data-lucide="check"></i> 7 chocolates Monfer</li>
+                            <li><i data-lucide="check"></i> Frase para mamá</li>
+                            <li><i data-lucide="check"></i> Topper corazón</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 35.00</span>
+                            <span class="old-price">S/ 45.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Modelo%20Aura%20Mini" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 10. Modelo Vanesa -->
+                <div class="mday-card-v2" data-aos="fade-up">
+                    <div class="card-img-container">
+                        <img src="images/ModeloVanesa.jpg" alt="Modelo Vanesa">
+                        <div class="card-price-tag">S/ 40</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Modelo Vanesa</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 3 rosas eternas</li>
+                            <li><i data-lucide="check"></i> Hojas + envol. coreana</li>
+                            <li><i data-lucide="check"></i> 2 choco Monfer + 3 bom boom</li>
+                            <li><i data-lucide="check"></i> 1 cajita decorativa</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 40.00</span>
+                            <span class="old-price">S/ 50.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Modelo%20Vanesa" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 11. Ramo Kitty Mamá (Añadido por consistencia) -->
+                <div class="mday-card-v2" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-img-container">
+                        <img src="images/Ramo Kitty Mamá.jpg" alt="Ramo Kitty Mamá">
+                        <div class="card-badge">💎 Edición Especial</div>
+                        <div class="card-price-tag">S/ 88</div>
+                    </div>
+                    <div class="card-body">
+                        <h3>Ramo Kitty Mamá</h3>
+                        <ul class="features-list">
+                            <li><i data-lucide="check"></i> 20 rosas eternas</li>
+                            <li><i data-lucide="check"></i> Peluche Hello Kitty</li>
+                            <li><i data-lucide="check"></i> Frase personalizada</li>
+                            <li><i data-lucide="check"></i> Mariposas decorativas</li>
+                        </ul>
+                        <div class="price-row">
+                            <span class="sale-price">S/ 88.00</span>
+                            <span class="old-price">S/ 98.00</span>
+                        </div>
+                        <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Kitty%20Mam%C3%A1" class="btn-mday-special">
+                            <i data-lucide="message-circle"></i> Quiero este
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 ACH_Details. Especial Día de la Madre.</p>
+                <a href="index.html" style="color: #f0548c; text-decoration: underline;">Volver al Catálogo General</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>

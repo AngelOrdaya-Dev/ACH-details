@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="ACH_Details - Rosas eternas que perduran para siempre. Ramos personalizados para cada ocasión especial. Envíos en Lima.">
+    <meta name="keywords"
+        content="rosas eternas, flores preservadas, ramos eternos, regalos, día de la madre, Lima, Perú">
+    <title>ACH_Details | Catálogo General</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/Logo.jpeg">
+    <link rel="apple-touch-icon" href="images/Logo.jpeg">
+
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:title" content="ACH_Details | Rosas Eternas">
+    <meta property="og:description"
+        content="Rosas artesanales que capturan la belleza de la naturaleza por siempre. Elaboradas a mano en Lima.">
+    <meta property="og:image" content="https://ach-details-lima.netlify.app/images/Logo.jpeg">
+    <meta property="og:url" content="https://ach-details-lima.netlify.app/">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Pre-initialize theme to avoid flash
+        const savedFatherMode = localStorage.getItem('fatherMode');
+        if (savedFatherMode === 'true') {
+            document.documentElement.setAttribute('data-theme', 'father');
+        } else if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</head>
+
+<body>
+
+    <!-- ========== PRELOADER ========== -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo-frame">
+                <img src="images/Logo.jpeg" alt="ACH_Details" class="preloader-logo">
+            </div>
+            <div class="preloader-text">ACH_Details</div>
+            <div class="preloader-tagline">Rosas para cada recuerdo</div>
+            <div class="preloader-loader">
+                <div class="preloader-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-frame">
+                    <img src="images/Logo.jpeg" alt="ACH_Details Logo" class="logo-img">
+                </div>
+                <span class="logo-text">ACH_Details</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="padre.html" class="nav-link-father"><i data-lucide="briefcase"></i> Día del Padre</a></li>
+                <li><a href="madre.html" class="nav-link-special"><i data-lucide="flower-2"></i> Día de la Madre</a></li>
+                <li><a href="index.html#personalizacion">Personalización</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button id="theme-toggle" aria-label="Cambiar modo oscuro"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="moon"></i>
+                </button>
+                <button id="music-toggle" aria-label="Reproducir música"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="volume-x"></i>
+                </button>
+                <audio id="bg-audio" src="so-easy.mp3" autoplay loop></audio>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <header class="hero" id="inicio">
+        <div class="hero-particles" id="hero-particles"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">
+                    <i data-lucide="sparkles"></i>
+                    Rosas para cada recuerdo
+                </span>
+                <h1>Regala amor que <em>perdura</em> para siempre</h1>
+                <p>Descubre nuestra colección exclusiva de rosas eternas, preservadas con técnicas artesanales para
+                    mantener su belleza intacta durante años.</p>
+                <div class="hero-cta">
+                    <a href="#catalogo" class="btn btn-primary" id="cta-catalogo">
+                        <i data-lucide="shopping-bag"></i>
+                        Ver Catálogo
+                    </a>
+                    <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesan%20sus%20rosas%20eternas"
+                        class="btn btn-outline" target="_blank" id="cta-whatsapp">
+                        <i data-lucide="message-circle"></i>
+                        Escríbenos
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="500">0</span>+
+                        <span class="stat-label">Clientes felices</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="3">0</span>+
+                        <span class="stat-label">Años de duración</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="50">0</span>+
+                        <span class="stat-label">Diseños únicos</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-wrapper">
+                    <img src="images/Angela.jpg" alt="Angela" loading="eager" id="hero-img">
+                    <div class="hero-image-glow"></div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <a href="#nosotros">
+                <i data-lucide="chevrons-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- ========== ABOUT SECTION ========== -->
+    <section class="about-section" id="nosotros">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right">
+                    <span class="section-tag">
+                        <i data-lucide="sparkles"></i>
+                        Nuestra Magia
+                    </span>
+                    <h2>Arte y amor en cada <em>detalle</em></h2>
+                    <p>En ACH_Details, creemos que los sentimientos verdaderos merecen perdurar. Por eso, nos dedicamos
+                        a preservar la belleza efímera de la naturaleza a través de nuestras rosas eternas.</p>
+                    <p>Cada arreglo es creado de manera artesanal, cuidando cada pétalo y cada detalle para ofrecerte un
+                        regalo verdaderamente inolvidable. Nuestras rosas pasan por un delicado proceso de preservación
+                        que mantiene su suavidad y frescura original durante años.</p>
+                    <ul class="about-features">
+                        <li><i data-lucide="check-circle-2"></i> Rosas 100% naturales preservadas</li>
+                        <li><i data-lucide="check-circle-2"></i> Diseños artesanales y exclusivos</li>
+                        <li><i data-lucide="check-circle-2"></i> Durabilidad de 3 a 5 años</li>
+                    </ul>
+                </div>
+                <div class="about-image" data-aos="fade-left">
+                    <img src="images/Logo.jpeg" alt="Mi logo" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CATALOG SECTION ========== -->
+    <section class="catalog-section" id="catalogo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i data-lucide="flower"></i>
+                    Nuestro Catálogo
+                </span>
+                <h2>Elige el ramo perfecto para cada ocasión</h2>
+                <p>Cada rosa es cuidadosamente seleccionada y preservada para mantener su belleza natural durante años.
+                </p>
+            </div>
+
+            <!-- Catalog Filters -->
+            <div class="catalog-filters" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="ramos">Clásicos</button>
+                <button class="filter-btn" data-filter="premium">Premium</button>
+                <button class="filter-btn" data-filter="tematicos">Temáticos</button>
+            </div>
+
+            <div class="catalog-grid">
+
+                <!-- Ramo 1: Encanto Morado -->
+                <div class="product-card" data-category="ramos" data-aos="fade-up">
+                    <div class="product-image">
+                        <img src="images/Encanto Morado.jpg" alt="Ramo Encanto Morado" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Encanto Morado</h3>
+                        <p>20 rosas + corona pequeña + frase + mariposa</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">72.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Encanto%20Dorado%20(S/%2072.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-encanto">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 2: Tierno Detalle -->
+                <div class="product-card" data-category="premium" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-badge">💝 Destacado</div>
+                    <div class="product-image">
+                        <img src="images/Tierno Detalle.jpg" alt="Ramo Tierno Detalle" loading="lazy"
+                            style="object-position: top;">
+                        <div class="product-tag">Premium</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Tierno Detalle</h3>
+                        <p>20 rosas + peluche corderito + perlas</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">90.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Tierno%20Detalle%20(S/%2090.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-tierno">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 3: Adoro Mi Amor -->
+                <div class="product-card" data-category="ramos" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <img src="images/Adoro_Mi_Amor.jpeg" alt="Ramo Adoro Mi Amor" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Adoro Mi Amor</h3>
+                        <p>20 rosas + corona peq. + perlas + frase</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">74.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Adoro%20Mi%20Amor%20(S/%2074.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-adoro">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 4: Princesa Real -->
+                <div class="product-card featured" data-category="premium" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-badge">⭐ Más vendido</div>
+                    <div class="product-image">
+                        <img src="images/Princesa Real.jpg" alt="Ramo Princesa Real" loading="lazy">
+                        <div class="product-tag">Luxury</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Princesa Real</h3>
+                        <p>20 rosas + tiara de metal + perlas + frase + mariposas</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">85.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Princesa%20Real%20(S/%2085.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-princesa">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 5: Clásico Elegante -->
+                <div class="product-card" data-category="ramos" data-aos="fade-up">
+                    <div class="product-image">
+                        <img src="images/Clasico_Elegante.jpeg" alt="Ramo Clásico Elegante" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Clásico Elegante</h3>
+                        <p>20 rosas + perlas + mariposas</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">68.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Cl%C3%A1sico%20Elegante%20(S/%2068.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-clasico">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 6: Lotso Berry -->
+                <div class="product-card" data-category="tematicos" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-image">
+                        <img src="images/Lotso%20Berry.jpeg" alt="Ramo Lotso Berry" loading="lazy"
+                            style="object-fit: cover;">
+                        <div class="product-tag">Exclusivo</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Lotso Berry</h3>
+                        <p>20 rosas + peluche Lotso + tiara metal + mariposa</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">99.90</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Lotso%20Berry%20(S/%2099.90)"
+                                class="btn btn-sm" target="_blank" id="pedir-lotso">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 7: Feliz Día -->
+                <div class="product-card" data-category="ramos" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <img src="images/Feliz Dia.jpg" alt="Ramo Feliz Día" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Feliz Día</h3>
+                        <p>20 rosas + frase + mariposas</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">69.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Feliz%20D%C3%ADa%20(S/%2069.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-felizdia">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 8: Cielo Azul -->
+                <div class="product-card" data-category="ramos" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-image">
+                        <img src="images/Cielo%20azul.jpeg" alt="Ramo Cielo Azul" loading="lazy"
+                            style="object-fit: cover;">
+                        <div class="product-tag">Delicado</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cielo Azul</h3>
+                        <p>15 rosas + corona peq. + frase + papel seda + mariposa</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">60.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Cielo%20Azul%20(S/%2060.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-cielo">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 9: Kitty Love -->
+                <div class="product-card" data-category="tematicos" data-aos="fade-up">
+                    <div class="product-image">
+                        <img src="images/Kitty%20Love.jpeg" alt="Ramo Kitty Love" loading="lazy"
+                            style="object-fit: cover;">
+                        <div class="product-tag">Exclusivo</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Kitty Love</h3>
+                        <p>20 rosas + peluche Hello Kitty + frase + perlas + mariposa</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">105.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Kitty%20Love%20(S/%20105.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-kitty">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 10: Sol y Pasión -->
+                <div class="product-card" data-category="premium" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-image">
+                        <img src="images/Sol%20y%20pasi%C3%B3n.jpeg" alt="Ramo Sol y Pasión" loading="lazy"
+                            style="object-fit: cover;">
+                        <div class="product-tag">Único</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Sol y Pasión</h3>
+                        <p>9 hermosos girasoles y 9 rosas rojas</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">134.90</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Sol%20y%20Pasi%C3%B3n%20(S/%20134.90)"
+                                class="btn btn-sm" target="_blank" id="pedir-sol">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 11: Para Mamá / Especial -->
+                <div class="product-card" data-category="ramos" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <img src="images/Detalle%20especial.jpeg" alt="Ramo Especial" loading="lazy"
+                            style="object-fit: cover;">
+                    </div>
+                    <div class="product-info">
+                        <h3>Detalle Especial</h3>
+                        <p>20 rosas + frase + mariposas (Color Rojo)</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">69.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Detalle%20Especial%20(S/%2069.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-especial">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 12: Magno Cumpleaños -->
+                <div class="product-card featured" data-category="premium" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-badge">💎 Luxury</div>
+                    <div class="product-image">
+                        <img src="images/Magno.jpeg" alt="Ramo Magno" loading="lazy" style="object-fit: cover;">
+                        <div class="product-tag">Grandioso</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Magno</h3>
+                        <p>50 rosas + perlas + frase + corona peq. + mariposas</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">160.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Magno%20(S/%20160.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-magno">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 13: Hero Spidey -->
+                <div class="product-card" data-category="tematicos" data-aos="fade-up">
+                    <div class="product-image">
+                        <img src="images/Hero%20Spidey.jpeg" alt="Ramo Hero Spidey" loading="lazy"
+                            style="object-fit: cover; object-position: top;">
+                        <div class="product-tag">Marvel</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Hero Spidey</h3>
+                        <p>7 rosas + perlas + peluche del Hombre Araña</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">35.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Hero%20Spidey%20(S/%2035.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-spidey">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 14: Dulce Encanto (Ramo 84) -->
+                <div class="product-card" data-category="premium" data-aos="fade-up">
+                    <div class="product-image">
+                        <img src="images/Ramo 84.jpeg" alt="Ramo Dulce Encanto - 25 rosas mix" loading="lazy">
+                        <div class="product-tag">Mix</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Dulce Encanto</h3>
+                        <p>25 rosas (rosa/fucsia/blanco) + frase + mariposas</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">84.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Dulce%20Encanto%20(S/%2084.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-dulce-encanto">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 15: Reina Bonita (Ramo 107) -->
+                <div class="product-card featured" data-category="premium" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-badge">🔥 Imponente</div>
+                    <div class="product-image">
+                        <img src="images/Ramo de 107.jpeg" alt="Ramo Reina Bonita - 30 rosas rojas" loading="lazy">
+                        <div class="product-tag">Luxury</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Reina Bonita</h3>
+                        <p>30 rosas rojas + corona + mariposas + frase + dedicatoria</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">107.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Reina%20Bonita%20(S/%20107.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-reina-bonita">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 17: Rosa Delicada (Ramo 37) -->
+                <div class="product-card" data-category="ramos" data-aos="fade-up">
+                    <div class="product-image">
+                        <img src="images/Ramo de 37.jpg" alt="Ramo Rosa Delicada - 10 rosas rosadas" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Rosa Delicada</h3>
+                        <p>10 rosas rosadas + frase + mariposa</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">37.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Rosa%20Delicada%20(S/%2037.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-rosa-delicada">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 18: Lotso Mamá (Ramo 130) -->
+                <div class="product-card featured" data-category="premium" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-badge">💎 Luxury</div>
+                    <div class="product-image">
+                        <img src="images/Ramo de 130.jpg" alt="Ramo Lotso Mamá - 30 rosas con Lotso" loading="lazy">
+                        <div class="product-tag">Premium</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Lotso Mamá</h3>
+                        <p>30 rosas rosadas + perlas + peluche Lotso + frase + mariposa</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">130.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Lotso%20Mam%C3%A1%20(S/%20130.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-lotso-mama">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ramo 19: Amor Eterno Abue (Ramo 42) -->
+                <div class="product-card" data-category="ramos" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-image">
+                        <img src="images/Ramo de 42.jpg" alt="Ramo Amor Eterno Abue - 12 rosas rojas" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Amor Eterno Abue</h3>
+                        <p>12 rosas rojas + perlas + frase "La mejor Abue"</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">42.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Amor%20Eterno%20Abue%20(S/%2042.00)"
+                                class="btn btn-sm" target="_blank" id="pedir-amor-abue">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PERSONALIZATION / ADD-ONS ========== -->
+    <section class="addons-section" id="personalizacion">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i data-lucide="wand-2"></i>
+                    Personalización
+                </span>
+                <h2>Haz tu regalo aún más <em>especial</em></h2>
+                <p>Añade accesorios únicos para crear un detalle verdaderamente inolvidable.</p>
+            </div>
+            <div class="addons-grid">
+                <div class="addon-card" data-aos="fade-up">
+                    <div class="addon-icon">
+                        <span class="addon-emoji">👑</span>
+                    </div>
+                    <h3>Coronas</h3>
+                    <p>Coronita decorativa dorada para darle un toque majestuoso a cada rosa</p>
+                    <div class="addon-price">
+                        <span>S/ 5.00</span>
+                        <span class="addon-unit">c/u</span>
+                    </div>
+                </div>
+                <div class="addon-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="addon-icon">
+                        <span class="addon-emoji">🦋</span>
+                    </div>
+                    <h3>Mariposas</h3>
+                    <p>Delicadas mariposas decorativas que le dan vida y encanto a tu arreglo</p>
+                    <div class="addon-price">
+                        <span>S/ 2.00</span>
+                        <span class="addon-unit">c/u</span>
+                    </div>
+                </div>
+                <div class="addon-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="addon-icon">
+                        <span class="addon-emoji">💎</span>
+                    </div>
+                    <h3>Perlas</h3>
+                    <p>Perlas elegantes que añaden un brillo sofisticado a tu bouquet</p>
+                    <div class="addon-price">
+                        <span>S/ 0.20</span>
+                        <span class="addon-unit">c/u</span>
+                    </div>
+                </div>
+                <div class="addon-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="addon-icon">
+                        <span class="addon-emoji">💌</span>
+                    </div>
+                    <h3>Frases en Cinta</h3>
+                    <p>Mensaje personalizado impreso en elegante cinta de raso para tu ser querido</p>
+                    <div class="addon-price">
+                        <span>S/ 5.00</span>
+                        <span class="addon-unit">c/u</span>
+                    </div>
+                </div>
+            </div>
+            <div class="addons-cta">
+                <p>¿Quieres personalizar tu ramo? Cuéntanos tu idea y lo hacemos realidad</p>
+                <a href="#" class="btn btn-primary" id="cta-diseno-unico">
+                    <i data-lucide="sparkles"></i>
+                    Crear Diseño Único
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS SECTION ========== -->
+    <section class="testimonials-section" id="testimonios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i data-lucide="heart"></i>
+                    Clientes Felices
+                </span>
+                <h2>Lo que dicen de nosotros</h2>
+                <p>La satisfacción de nuestros clientes es nuestro mayor orgullo.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card" data-aos="fade-up">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Mi mamá quedó encantada con su arreglo que escogi de
+                        la promo de 10 rosas por 25 soles. La
+                        presentación es única y la atención de primera, no sabia que las rosas eran tan bellas, creo que
+                        volveré a pedir otro ramo 🥺 o quiza compre el de 100 rosas el otro año."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="images/Jheisson.jpg" alt="Jheisson Sanchez"
+                                class="author-avatar"></div>
+                        <div class="author-info">
+                            <strong>Jheisson Sanchez</strong>
+                            <span>Cliente Verificado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"El 21 de Marzo del 2026, Compré un Ramo de 8 rosas amarillas más un
+                        girasol 🌻 para mi amiga que tiene a su bebé, por nuestro primer encuentro y por ser el dia de
+                        las flores amarillas.Las rosas son tan hermosas que lo conserva hasta el día de hoy, verla
+                        sonreir fue lo mejor 🫶🏻"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="images/Angel.jpeg" alt="Angel Ordaya" loading="lazy"></div>
+                        <div class="author-info">
+                            <strong>Angel Ordaya</strong>
+                            <span>Cliente Verificado</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-quote">"Creí que era mentira que duraba "años" hasta que me regalaron un ramo
+                        de rosas rojas, ahora ya lleva 1 año conmigo, las conservo en un florero y están igualitas
+                        como el primer día, de los mejores regalos que me han podido dar. Recomendado al 100% 💐🫰🏻"
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"><img src="images/Rosario.jpeg" alt="Rosario Sarango" loading="lazy">
+                        </div>
+                        <div class="author-info">
+                            <strong>Rosario Sarango</strong>
+                            <span>Cliente Verificada</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CARE SECTION ========== -->
+    <section class="care-section" id="cuidados">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i data-lucide="shield-check"></i>
+                    Cuidados Especiales
+                </span>
+                <h2>Cómo cuidar tus rosas eternas</h2>
+                <p>Nuestras rosas no necesitan agua ni luz, pero con estos simples cuidados te durarán años intactas.
+                </p>
+            </div>
+            <div class="care-grid">
+                <div class="care-card" data-aos="fade-up">
+                    <div class="care-icon"><i data-lucide="droplet-off"></i></div>
+                    <h3>Cero Agua</h3>
+                    <p>No las riegues ni las rocíes con ningún líquido. La humedad daña irreversiblemente la
+                        preservación.</p>
+                </div>
+                <div class="care-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="care-icon"><i data-lucide="sun-dim"></i></div>
+                    <h3>Evita el Sol Directo</h3>
+                    <p>La luz ultravioleta o solar directa puede decolorar los pétalos con el paso del tiempo.</p>
+                </div>
+                <div class="care-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="care-icon"><i data-lucide="wind"></i></div>
+                    <h3>Evita Corrientes</h3>
+                    <p>Mantenlas en ambientes interiores, lejos de ventiladores fuertes o salidas de aire acondicionado.
+                    </p>
+                </div>
+                <div class="care-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="care-icon"><i data-lucide="brush"></i></div>
+                    <h3>Limpieza Delicada</h3>
+                    <p>Si acumulan polvo, usa un secador en aire muy frío y suave, o retíralo con un pincel seco.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAQ SECTION ========== -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i data-lucide="help-circle"></i>
+                    Preguntas Frecuentes
+                </span>
+                <h2>Todo lo que necesitas saber</h2>
+                <p>Resolvemos tus dudas sobre nuestras rosas eternas.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item" id="faq-1">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                        <span>¿Qué son las rosas eternas?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <p>Las rosas eternas son rosas naturales que han sido sometidas a un proceso de preservación
+                            especial. Este proceso reemplaza la savia natural por una solución a base de glicerina, lo
+                            que permite que la rosa mantenga su apariencia fresca, suave y hermosa durante <strong>3
+                                años o más</strong>, sin necesidad de agua ni luz solar.</p>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-2">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                        <span>¿Cómo debo cuidar mis rosas eternas?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <p>¡Son muy fáciles de cuidar! Solo sigue estas recomendaciones:</p>
+                        <ul>
+                            <li><strong>No las mojes</strong> ni las rocíes con agua.</li>
+                            <li>Mantenlas <strong>alejadas de la luz solar directa</strong> para preservar su color.
+                            </li>
+                            <li>Evita tocar los pétalos con frecuencia.</li>
+                            <li>Mantenlas en un lugar con <strong>poca humedad</strong>.</li>
+                            <li>Límpialas suavemente con un <strong>pincel seco</strong> si acumulan polvo.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-3">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                        <span>¿Cuánto tiempo duran las rosas eternas?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <p>Con los cuidados adecuados, nuestras rosas eternas pueden durar entre <strong>3 a 5
+                                años</strong> manteniendo su belleza original. Algunas clientas nos han reportado que
+                            sus rosas siguen perfectas después de más de 5 años.</p>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-4">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+                        <span>¿Cuál es el tiempo de entrega?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-4">
+                        <p>Nuestros tiempos de entrega son:</p>
+                        <ul>
+                            <li><strong>Pedidos en stock:</strong> Entrega en 24 a 48 horas.</li>
+                            <li><strong>Pedidos personalizados:</strong> De 3 a 5 días hábiles.</li>
+                            <li><strong>Envíos a domicilio en Lima:</strong> Coordinamos la entrega por WhatsApp.</li>
+                            <li><strong>Envíos a provincias:</strong> Mediante <strong>Shalom</strong>, con costo
+                                adicional según destino.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-5">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+                        <span>¿De qué colores están disponibles las rosas?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-5">
+                        <p>Contamos con una amplia variedad de colores: <strong>rojo, rosa pastel, blanco, azul, morado,
+                                negro, amarillo, naranja</strong> y muchos más. También podemos hacer combinaciones de
+                            colores a tu gusto. ¡Consúltanos por WhatsApp!</p>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-6">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6">
+                        <span>¿Puedo personalizar mi ramo?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-6">
+                        <p>¡Por supuesto! Puedes elegir el color de las rosas, agregar accesorios como <strong>coronas,
+                                mariposas, perlas</strong> y <strong>cintas con frases personalizadas</strong>. Armamos
+                            tu ramo exactamente como lo imaginas. Solo escríbenos por WhatsApp con tu idea.</p>
+                    </div>
+                </div>
+                <div class="faq-item" id="faq-7">
+                    <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-7">
+                        <span>¿A qué zonas realizan envíos (Delivery)?</span>
+                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-7">
+                        <p>Nuestra sede está en <strong>La Molina, Lima</strong>. Realizamos envíos a <strong>todo Lima
+                                Metropolitana</strong> a través de motorizado particular (el costo varía según el
+                            distrito). También puedes enviar tu propia movilidad (como Cabify o PedidosYa) a recoger tu
+                            arreglo. Para provincias, realizamos envíos 100% seguros a través de
+                            <strong>Shalom</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TIKTOK FEED SECTION ========== -->
+    <section class="tiktok-section" id="tiktok">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i data-lucide="video"></i>
+                    Síguenos en TikTok
+                </span>
+                <h2>Conoce más de nuestro trabajo</h2>
+                <p>Mira de cerca cómo preparamos cada pedido con mucho amor. <a
+                        href="https://www.tiktok.com/@detalles_alexa1?_r=1&_t=ZS-95zMQZftocW" target="_blank"
+                        class="tiktok-link">@ACH_Details</a>
+                </p>
+            </div>
+            <div class="tiktok-grid">
+                <!-- TikTok Embed 1 -->
+                <div class="tiktok-embed-wrapper" data-aos="fade-up">
+                    <iframe src="https://www.tiktok.com/player/v1/7626311349848608007?autoplay=1&loop=1&muted=1"
+                        allow="autoplay; encrypted-media" style="width: 100%; height: 100%; border: none;">
+                    </iframe>
+                </div>
+                <!-- TikTok Embed 2 -->
+                <div class="tiktok-embed-wrapper" data-aos="fade-up" data-aos-delay="100">
+                    <iframe src="https://www.tiktok.com/player/v1/7621749963684416775?autoplay=1&loop=1&muted=1"
+                        allow="autoplay; encrypted-media" style="width: 100%; height: 100%; border: none;">
+                    </iframe>
+                </div>
+                <!-- TikTok Embed 3 -->
+                <div class="tiktok-embed-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <iframe src="https://www.tiktok.com/player/v1/7632251142377934087?autoplay=1&loop=1&muted=1"
+                        allow="autoplay; encrypted-media" style="width: 100%; height: 100%; border: none;">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo">
+                        <div class="logo-frame">
+                            <img src="images/Logo.jpeg" alt="ACH_Details" class="logo-img">
+                        </div>
+                        <span class="logo-text">ACH_Details</span>
+                    </a>
+                    <p>Rosas eternas artesanales que capturan la belleza de la naturaleza por siempre. Cada pieza es
+                        creada con amor y dedicación.</p>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Síguenos</h4>
+                    <ul>
+                        <li>
+                            <!-- Ícono de Instagram en SVG explícito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-instagram">
+                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                            </svg>
+                            <a href="https://www.instagram.com/ach_details?igsh=ZXBqNnF3djg5eG1w"
+                                target="_blank">Instagram</a>
+                        </li>
+                        <li>
+                            <!-- Ícono de TikTok en SVG explícito -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="lucide lucide-tiktok">
+                                <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5" />
+                            </svg>
+                            <a href="https://www.tiktok.com/@detalles_alexa1?_r=1&_t=ZS-95zMQZftocW"
+                                target="_blank">TikTok</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="footer-links-group">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li>
+                            <i data-lucide="phone"></i>
+                            <a href="tel:+51946759953">+51 946 759 953</a>
+                        </li>
+                        <li>
+                            <i data-lucide="map-pin"></i>
+                            <span>Lima, La Molina, Perú</span>
+                        </li>
+                        <li>
+                            <i data-lucide="clock"></i>
+                            <span>Lun - Sáb: 9am - 7pm</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ACH_Details. Todos los derechos reservados.</p>
+                <p>Creado por Angel Ordaya para ACH_Details</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== FLOATING WHATSAPP BUTTON ========== -->
+    <a href="https://wa.me/51946759953?text=Hola%2C%20estoy%20interesad@%20en%20sus%20rosas%20eternas"
+        class="whatsapp-float" target="_blank" id="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <div class="whatsapp-pulse"></div>
+        <svg viewBox="0 0 32 32" fill="currentColor">
+            <path
+                d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.132 6.742 3.052 9.376L1.056 31.1l5.956-1.908A15.917 15.917 0 0016.004 32C24.826 32 32 24.822 32 16S24.826 0 16.004 0zm9.31 22.608c-.39 1.098-1.932 2.01-3.17 2.276-.846.178-1.95.32-5.668-1.218-4.762-1.966-7.826-6.8-8.064-7.114-.228-.314-1.924-2.562-1.924-4.888 0-2.326 1.218-3.468 1.65-3.942.39-.428 1.024-.62 1.632-.62.196 0 .374.01.532.018.468.02.702.048 1.012.784.386.922 1.328 3.248 1.444 3.484.118.236.236.544.078.858-.15.322-.274.522-.508.802-.236.28-.488.496-.724.798-.216.268-.46.554-.194 1.024.266.462 1.182 1.95 2.538 3.16 1.742 1.554 3.21 2.038 3.668 2.264.458.226.728.19 1.002-.114.28-.314 1.194-1.39 1.512-1.868.312-.478.632-.394 1.062-.236.434.158 2.754 1.298 3.226 1.534.468.236.782.354.898.548.118.194.118 1.132-.272 2.23z" />
+        </svg>
+        <span class="whatsapp-tooltip">¡Hola! ¿Te ayudamos?</span>
+    </a>
+
+    <!-- ========== ORDER MODAL ========== -->
+    <div class="modal-overlay" id="order-modal">
+        <div class="modal-container">
+            <button class="modal-close" id="close-modal" aria-label="Cerrar modal"><i data-lucide="x"></i></button>
+            <div class="modal-header">
+                <h3>Personaliza tu Pedido</h3>
+                <p>Agrega detalles especiales a tu <strong id="modal-product-name">Ramo</strong></p>
+            </div>
+
+            <div class="modal-body">
+                <div class="addon-selection">
+                    <div class="addon-carousel" id="addon-carousel">
+                        <!-- Corona -->
+                        <div class="addon-item">
+                            <div class="addon-emoji">👑</div>
+                            <div class="addon-info">
+                                <span class="addon-name">Corona Dorada</span>
+                                <span class="addon-price">+S/ 5.00 c/u</span>
+                            </div>
+                            <div class="addon-qty-controls">
+                                <button type="button" class="qty-btn minus" data-target="qty-corona"
+                                    aria-label="Reducir cantidad"><i data-lucide="minus"></i></button>
+                                <input type="number" id="qty-corona" class="addon-input" data-price="5"
+                                    data-name="Corona Dorada" value="0" min="0" readonly>
+                                <button type="button" class="qty-btn plus" data-target="qty-corona"
+                                    aria-label="Aumentar cantidad"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                        <!-- Mariposa -->
+                        <div class="addon-item">
+                            <div class="addon-emoji">🦋</div>
+                            <div class="addon-info">
+                                <span class="addon-name">Mariposa Decorativa</span>
+                                <span class="addon-price">+S/ 2.00 c/u</span>
+                            </div>
+                            <div class="addon-qty-controls">
+                                <button type="button" class="qty-btn minus" data-target="qty-mariposa"
+                                    aria-label="Reducir cantidad"><i data-lucide="minus"></i></button>
+                                <input type="number" id="qty-mariposa" class="addon-input" data-price="2"
+                                    data-name="Mariposa Decorativa" value="0" min="0" readonly>
+                                <button type="button" class="qty-btn plus" data-target="qty-mariposa"
+                                    aria-label="Aumentar cantidad"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                        <!-- Perla -->
+                        <div class="addon-item">
+                            <div class="addon-emoji">💎</div>
+                            <div class="addon-info">
+                                <span class="addon-name">Perla Elegante</span>
+                                <span class="addon-price">+S/ 0.20 c/u</span>
+                            </div>
+                            <div class="addon-qty-controls">
+                                <button type="button" class="qty-btn minus" data-target="qty-perla"
+                                    aria-label="Reducir cantidad"><i data-lucide="minus"></i></button>
+                                <input type="number" id="qty-perla" class="addon-input" data-price="0.20"
+                                    data-name="Perla Elegante" value="0" min="0" readonly>
+                                <button type="button" class="qty-btn plus" data-target="qty-perla"
+                                    aria-label="Aumentar cantidad"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                        <!-- Cinta Frase -->
+                        <div class="addon-item">
+                            <div class="addon-emoji">💌</div>
+                            <div class="addon-info">
+                                <span class="addon-name">Cinta con Frase</span>
+                                <span class="addon-price">+S/ 5.00 c/u</span>
+                            </div>
+                            <div class="addon-qty-controls">
+                                <button type="button" class="qty-btn minus" data-target="qty-cinta"
+                                    aria-label="Reducir cantidad"><i data-lucide="minus"></i></button>
+                                <input type="number" id="qty-cinta" class="addon-input" data-price="5"
+                                    data-name="Cinta con Frase" value="0" min="0" readonly>
+                                <button type="button" class="qty-btn plus" data-target="qty-cinta"
+                                    aria-label="Aumentar cantidad"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-message">
+                    <label for="custom-message">¿Mensaje personalizado para tarjeta? (Opcional)</label>
+                    <textarea id="custom-message" rows="2" placeholder="Escribe tu dedicatoria aquí..."></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="modal-total">
+                    <span>Total estimado:</span>
+                    <strong id="modal-total-price">S/ 0.00</strong>
+                </div>
+                <button class="btn btn-primary btn-full" id="confirm-order-btn">
+                    <i data-lucide="message-circle"></i> Confirmar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== LIGHTBOX MODAL ========== -->
+    <div class="lightbox-overlay" id="lightbox-overlay">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Cerrar galería"><i data-lucide="x"></i></button>
+        <img src="" alt="Vista ampliada" class="lightbox-img" id="lightbox-img">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

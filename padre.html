@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="father-dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ACH_Details - Colección Gold Premium para el Día del Padre. Detalles elegantes y poderosos.">
+    <title>ACH_Details | Día del Padre</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/Logo.jpeg">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ============================================================
+           STRICT FATHER THEME: ABSOLUTELY NO PINK LEAKAGE
+           ============================================================ */
+        :root {
+            /* Forced Gold & Neutral Palette */
+            --accent: #d4af37 !important;
+            --accent-hover: #e8c84a !important;
+            --gold-400: #e8c84a !important;
+            --rose-500: #d4af37 !important; /* Hijack rose variable just in case */
+            --rose-600: #b8860b !important;
+            
+            /* Preloader Gold Theme */
+            --splash-color-1: rgba(212, 175, 55, 0.5) !important;
+            --splash-color-2: rgba(212, 175, 55, 0.3) !important;
+            --splash-color-3: rgba(212, 175, 55, 0.2) !important;
+        }
+
+        /* DARK MODE (DEFAULT) */
+        [data-theme="father-dark"] {
+            --bg-primary: #000000 !important;
+            --bg-secondary: #0a0a0a !important;
+            --bg-card: #111111 !important;
+            --text-heading: #ffffff !important;
+            --text-primary: #e5e7eb !important;
+            --text-secondary: #9ca3af !important;
+            --nav-bg: rgba(0, 0, 0, 0.95) !important;
+            --border-color: rgba(212, 175, 55, 0.3) !important;
+        }
+
+        /* LIGHT MODE (WHITE & GOLD - NO PINK) */
+        [data-theme="father-light"] {
+            --bg-primary: #ffffff !important;
+            --bg-secondary: #f3f4f6 !important;
+            --bg-card: #ffffff !important;
+            --text-heading: #000000 !important;
+            --text-primary: #111827 !important;
+            --text-secondary: #4b5563 !important;
+            --nav-bg: rgba(255, 255, 255, 0.95) !important;
+            --border-color: #e5e7eb !important;
+        }
+
+        body {
+            background-color: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+        }
+
+        /* Navbar & Logo Fix */
+        .navbar {
+            background: var(--nav-bg) !important;
+            border-bottom: 1px solid var(--border-color) !important;
+        }
+        .logo-text {
+            color: var(--accent) !important; /* Forced Gold */
+        }
+        .nav-links a {
+            color: var(--text-heading) !important;
+        }
+        .nav-links a:hover {
+            color: var(--accent) !important;
+        }
+
+        /* PRELOADER: STRICTLY BLACK & GOLD */
+        #preloader {
+            background: #000000 !important;
+        }
+        #preloader::before {
+            background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.15) 0%, transparent 70%) !important;
+        }
+        .preloader-logo-frame {
+            background: #000 !important;
+            box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.3), 0 0 40px rgba(212, 175, 55, 0.2) !important;
+            border: 2px solid #d4af37 !important;
+        }
+        .preloader-logo {
+            filter: sepia(1) saturate(5) hue-rotate(-15deg) brightness(0.9) !important;
+        }
+        .preloader-text, .preloader-tagline {
+            color: #d4af37 !important;
+        }
+        .preloader-bar {
+            background: linear-gradient(90deg, #d4af37, #e8c84a, #d4af37) !important;
+        }
+
+        /* HERO FIXES */
+        .hero {
+            background: var(--bg-primary) !important;
+        }
+        .hero h1 {
+            color: var(--text-heading) !important;
+        }
+        .hero h1 em {
+            color: var(--accent) !important;
+            font-style: italic;
+        }
+        .hero-badge, .section-tag {
+            background: rgba(212, 175, 55, 0.1) !important;
+            color: var(--accent) !important;
+            border: 1px solid var(--accent) !important;
+        }
+
+        /* BUTTONS: NO PINK GRADIENTS */
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #b8860b) !important;
+            color: #000 !important;
+            border: none !important;
+        }
+        .btn-outline {
+            border: 2px solid var(--accent) !important;
+            color: var(--accent) !important;
+            background: transparent !important;
+        }
+        .btn-outline:hover {
+            background: rgba(212, 175, 55, 0.1) !important;
+        }
+
+        /* PRODUCT CARDS: CLEAN GOLD/BLACK */
+        .product-card {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border-color) !important;
+            box-shadow: var(--shadow-md) !important;
+        }
+        .product-card h3 { color: var(--text-heading) !important; }
+        .product-card .product-tag, .product-card .product-badge {
+            background: var(--accent) !important;
+            color: #000 !important;
+        }
+        .product-card .btn-sm {
+            background: var(--accent) !important;
+            color: #000 !important;
+        }
+        .product-card:hover {
+            border-color: var(--accent) !important;
+            transform: translateY(-5px);
+        }
+
+        /* Particles */
+        .particle {
+            background: var(--accent) !important;
+            box-shadow: 0 0 8px var(--accent) !important;
+        }
+
+        /* Image sizing */
+        .hero-image-wrapper {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        #hero-img {
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #000 !important;
+            color: #9ca3af !important;
+            border-top: 1px solid #111;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('theme-toggle');
+            const html = document.documentElement;
+
+            const updateIcon = (theme) => {
+                toggle.innerHTML = theme === 'father-dark' ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
+                lucide.createIcons();
+            };
+
+            toggle.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'father-dark' ? 'father-light' : 'father-dark';
+                html.setAttribute('data-theme', newTheme);
+                updateIcon(newTheme);
+            });
+
+            lucide.createIcons();
+        });
+    </script>
+</head>
+
+<body>
+    <!-- ========== PRELOADER ========== -->
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="preloader-logo-frame">
+                <img src="images/Logo.jpeg" alt="ACH_Details" class="preloader-logo">
+            </div>
+            <div class="preloader-text">Día del Padre</div>
+            <div class="preloader-tagline">Gold Luxury Edition</div>
+        </div>
+    </div>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-frame">
+                    <img src="images/Logo.jpeg" alt="ACH_Details Logo" class="logo-img">
+                </div>
+                <span class="logo-text">ACH_Details</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="padre.html" class="nav-link-father"><i data-lucide="briefcase"></i> Día del Padre</a></li>
+                <li><a href="madre.html" class="nav-link-special"><i data-lucide="flower-2"></i> Día de la Madre</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button id="theme-toggle" aria-label="Cambiar modo oscuro"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="sun"></i>
+                </button>
+                <button id="music-toggle" aria-label="Reproducir música"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="volume-x"></i>
+                </button>
+                <audio id="bg-audio" src="gone_gone_gone.mpeg" autoplay loop></audio>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <header class="hero" id="inicio">
+        <div id="hero-particles"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <i data-lucide="award"></i>
+                    <span>Gold Premium Collection</span>
+                </div>
+                <h1>Para el héroe que lo <em>da todo</em></h1>
+                <p>Celebra a papá con nuestra edición limitada Gold. Rosas eternas en tonos profundos y dorados, diseñadas para perdurar como su legado.</p>
+                <div class="hero-cta">
+                    <a href="#dia-padre" class="btn btn-primary">
+                        <i data-lucide="shopping-bag"></i>
+                        Ver Colección
+                    </a>
+                    <a href="index.html#catalogo" class="btn btn-outline">
+                        Catálogo General
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image-glow"></div>
+                    <img src="images/Spiderman Dorado.jpeg" alt="Especial Día del Padre" id="hero-img">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== FATHER'S DAY CATALOG ========== -->
+    <section class="catalog-section" id="dia-padre">
+        <div class="container" style="padding: 60px 0;">
+            <div class="section-header">
+                <span class="section-tag">
+                    <i data-lucide="briefcase"></i>
+                    Gold Premium
+                </span>
+                <h2>Regalos con <em>carácter y elegancia</em></h2>
+                <p>Modelos exclusivos diseñados para papá.</p>
+            </div>
+
+            <div class="catalog-grid">
+                <!-- Ramo 13: Hero Spidey -->
+                <div class="product-card featured">
+                    <div class="product-badge">🔥 El Favorito</div>
+                    <div class="product-image">
+                        <img src="images/Hero Spidey.jpeg" alt="Ramo Hero Spidey" loading="lazy">
+                        <div class="product-tag">Marvel Edition</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Hero Spidey Gold</h3>
+                        <p>7 rosas doradas + perlas + peluche Spiderman</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">45.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Ramo%20Hero%20Spidey%20Gold"
+                                class="btn btn-sm" target="_blank">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modelo Noir 1 (Simulado con Spiderman Dorado) -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="images/Spiderman Dorado.jpeg" alt="Gold Edition" loading="lazy">
+                    </div>
+                    <div class="product-info">
+                        <h3>Gold Luxury Edition</h3>
+                        <p>20 rosas eternas doradas con detalles premium</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                <span class="currency">S/</span>
+                                <span class="amount">85.00</span>
+                            </div>
+                            <a href="https://wa.me/51946759953?text=Hola%2C%20me%20interesa%20el%20Gold%20Luxury%20Edition"
+                                class="btn btn-sm" target="_blank">
+                                <i data-lucide="message-circle"></i> Pedir
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 ACH_Details. Colección Gold Premium.</p>
+                <a href="index.html" style="color: var(--accent); text-decoration: underline;">Volver al Catálogo General</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
