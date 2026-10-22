@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Calendario de Adviento ACH Details - La Mansión de las Rosas Eternas. Una experiencia mágica de 24 días con rosas preservadas, regalos gourmet y sorpresas inolvidables en Lima.">
+    <meta name="keywords"
+        content="calendario de adviento, rosas eternas, packaging lujo, flores preservadas, regalo navidad lima, ach details">
+    <title>ACH_Details | Calendario de Adviento - La Mansión de las Rosas</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="images/Logo.jpeg">
+    <link rel="apple-touch-icon" href="images/Logo.jpeg">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Calendario de Adviento ACH Details | Rosas Eternas">
+    <meta property="og:description"
+        content="La mágica casita de adviento que se abre como un libro. 24 días de rosas eternas y sorpresas de lujo.">
+    <meta property="og:image" content="images/advent_calendar_house.jpg">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=Cinzel+Decorative:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* ============================================================
+           ADVENT CALENDAR SPECIAL STYLES — ACH DETAILS
+           ============================================================ */
+
+        :root {
+            --adv-gold: #e5b96a;
+            --adv-gold-light: #fef0d8;
+            --adv-gold-dark: #b8860b;
+            --adv-rose: #f0789d;
+            --adv-rose-deep: #c9406b;
+            --adv-burgundy: #6b1426;
+            --adv-cream: #fff9f2;
+            --adv-roof: #e898aa;
+            --adv-wood: #4a2828;
+            --adv-snow: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Festive Navbar link */
+        .nav-link-adviento {
+            background: linear-gradient(135deg, #d84570, #c42b58);
+            color: #ffffff !important;
+            padding: 7px 16px !important;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(216, 69, 112, 0.35);
+            animation: pulse-glow 2.5s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(216, 69, 112, 0.35); }
+            50% { box-shadow: 0 4px 25px rgba(240, 120, 157, 0.65); transform: translateY(-1px); }
+        }
+
+        /* Snow Canvas overlay */
+        #snow-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 99;
+        }
+
+        /* Hero Advent */
+        .adv-hero {
+            position: relative;
+            padding: 130px 20px 60px;
+            background: radial-gradient(circle at 50% 30%, #fff2f6 0%, #fae6ed 50%, #f5d4e1 100%);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .adv-hero {
+            background: radial-gradient(circle at 50% 30%, #2b1723 0%, #1c0e16 60%, #12070e 100%);
+        }
+
+        .adv-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--adv-rose-deep);
+            border: 1px solid rgba(240, 120, 157, 0.3);
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(201, 64, 107, 0.1);
+        }
+
+        [data-theme="dark"] .adv-hero-badge {
+            background: rgba(40, 20, 30, 0.8);
+            color: var(--rose-300);
+            border-color: rgba(240, 120, 157, 0.25);
+        }
+
+        .adv-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            color: var(--text-heading);
+            line-height: 1.15;
+            margin-bottom: 15px;
+        }
+
+        .adv-hero h1 span.gold-text {
+            background: linear-gradient(135deg, #c9882b 0%, #fcd5a3 50%, #b8860b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+        }
+
+        .adv-hero p {
+            max-width: 680px;
+            margin: 0 auto 30px;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .adv-controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .btn-adv-primary {
+            background: linear-gradient(135deg, #e65c88, #b8335c);
+            color: white;
+            border: none;
+            padding: 13px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(184, 51, 92, 0.35);
+            transition: all 0.3s ease;
+        }
+
+        .btn-adv-primary:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(184, 51, 92, 0.5);
+        }
+
+        .btn-adv-secondary {
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-heading);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] .btn-adv-secondary {
+            background: rgba(40, 20, 30, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-adv-secondary:hover {
+            background: var(--rose-50);
+            border-color: var(--rose-400);
+            transform: translateY(-2px);
+        }
+
+        /* ============================================================
+           THE 3D COTTAGE BOOK COMPONENT
+           ============================================================ */
+
+        .cottage-stage {
+            perspective: 2000px;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 20px 10px 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* The overall Book Structure */
+        .cottage-book {
+            position: relative;
+            width: 100%;
+            max-width: 920px;
+            min-height: 640px;
+            display: flex;
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.35, 1);
+        }
+
+        /* Center Spine (Lomo del libro) */
+        .book-spine {
+            position: absolute;
+            left: 50%;
+            top: 60px;
+            bottom: 0;
+            width: 24px;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #b8860b, #fcd5a3, #b8860b);
+            border-radius: 4px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2) inset;
+            z-index: 10;
+            display: none; /* Shown when open */
+        }
+
+        /* Left and Right Panels */
+        .book-panel {
+            flex: 1;
+            position: relative;
+            min-height: 640px;
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.25, 1, 0.35, 1);
+        }
+
+        /* Left Wing */
+        .left-panel {
+            transform-origin: right center;
+            z-index: 5;
+        }
+
+        /* Right Wing */
+        .right-panel {
+            transform-origin: left center;
+            z-index: 4;
+        }
+
+        /* ================= STATE: CLOSED ================= */
+        .cottage-book.is-closed {
+            max-width: 480px;
+        }
+
+        .cottage-book.is-closed .left-panel {
+            flex: 1 0 100%;
+            transform: rotateY(0deg);
+        }
+
+        .cottage-book.is-closed .right-panel {
+            display: none;
+        }
+
+        .cottage-book.is-closed .book-spine {
+            display: none;
+        }
+
+        .cottage-book.is-closed .interior-face {
+            display: none;
+        }
+
+        .cottage-book.is-closed .facade-face {
+            display: flex;
+        }
+
+        /* ================= STATE: OPEN ================= */
+        .cottage-book.is-open .facade-face {
+            display: none;
+        }
+
+        .cottage-book.is-open .interior-face {
+            display: flex;
+        }
+
+        .cottage-book.is-open .right-panel {
+            display: flex;
+        }
+
+        .cottage-book.is-open .book-spine {
+            display: block;
+        }
+
+        .cottage-book.is-open .left-panel {
+            transform: rotateY(-5deg);
+        }
+
+        .cottage-book.is-open .right-panel {
+            transform: rotateY(5deg);
+        }
+
+        /* ============================================================
+           FACADE DESIGN (CASA CERRADA)
+           ============================================================ */
+
+        .house-facade {
+            width: 100%;
+            min-height: 640px;
+            background: linear-gradient(180deg, #fff7fa 0%, #fcedf2 100%);
+            border-radius: 8px 8px 16px 16px;
+            box-shadow: 0 25px 60px rgba(184, 51, 92, 0.25), 0 5px 15px rgba(0,0,0,0.08);
+            border: 3px solid var(--adv-gold);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 30px 40px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .house-facade:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 70px rgba(184, 51, 92, 0.35);
+        }
+
+        /* Pitch Roof (Techo a dos aguas con corte en V) */
+        .facade-roof {
+            width: calc(100% + 60px);
+            margin: -3px -30px 0;
+            height: 140px;
+            background: linear-gradient(135deg, #d86887 0%, #ba4065 100%);
+            clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 -4px 10px rgba(0,0,0,0.2);
+            border-top: 3px solid var(--adv-gold-light);
+        }
+
+        /* Chimney */
+        .facade-chimney {
+            position: absolute;
+            top: 15px;
+            right: 45px;
+            width: 32px;
+            height: 60px;
+            background: #a33b5c;
+            border: 2px solid var(--adv-gold);
+            border-bottom: none;
+            border-radius: 4px 4px 0 0;
+            z-index: 1;
+        }
+
+        .facade-chimney::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -4px;
+            width: 36px;
+            height: 8px;
+            background: var(--adv-gold);
+            border-radius: 4px;
+        }
+
+        .roof-cresting {
+            position: absolute;
+            bottom: 12px;
+            color: #ffffff;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Cinzel Decorative', cursive;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .facade-ornament {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .facade-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--adv-rose-deep);
+            margin: 5px 0 2px;
+            letter-spacing: 1px;
+        }
+
+        .facade-subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--adv-gold-dark);
+            font-weight: 700;
+        }
+
+        /* Victorian Windows & Door */
+        .facade-windows-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            width: 100%;
+            margin: 25px 0 20px;
+            padding: 0 15px;
+        }
+
+        .facade-window {
+            height: 90px;
+            background: linear-gradient(135deg, #fff2cc 0%, #ffeaa7 100%);
+            border: 3px solid var(--adv-gold);
+            border-radius: 40px 40px 6px 6px;
+            position: relative;
+            box-shadow: inset 0 0 15px rgba(255, 180, 0, 0.4), 0 6px 12px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .facade-window::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: var(--adv-gold);
+        }
+
+        .facade-window::after {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: var(--adv-gold);
+        }
+
+        .window-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,230,150,0.8) 0%, transparent 70%);
+            animation: candle-flicker 3s infinite ease-in-out alternate;
+        }
+
+        @keyframes candle-flicker {
+            0% { opacity: 0.6; }
+            50% { opacity: 0.95; }
+            100% { opacity: 0.75; }
+        }
+
+        /* Main House Door */
+        .facade-door-area {
+            position: relative;
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .facade-door {
+            width: 110px;
+            height: 150px;
+            background: linear-gradient(180deg, #a83b5e 0%, #7d1c3a 100%);
+            border: 3px solid var(--adv-gold);
+            border-radius: 50px 50px 0 0;
+            position: relative;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 25px;
+        }
+
+        .door-wreath {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 4px dashed #2e7d32;
+            box-shadow: 0 0 8px rgba(46, 125, 50, 0.4);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .door-wreath::before {
+            content: '🌹';
+            font-size: 1.1rem;
+        }
+
+        .door-handle {
+            position: absolute;
+            right: 14px;
+            top: 85px;
+            width: 8px;
+            height: 8px;
+            background: var(--adv-gold);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+        }
+
+        /* Ribbon & Bow (Cierre del Libro) */
+        .ribbon-strap {
+            position: absolute;
+            right: -15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(90deg, #d84570, #961b3d);
+            padding: 10px 20px;
+            border-radius: 8px 0 0 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 10;
+            cursor: pointer;
+            animation: ribbon-bounce 2s infinite ease-in-out;
+            border: 1px solid var(--adv-gold-light);
+        }
+
+        @keyframes ribbon-bounce {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(-6px); }
+        }
+
+        /* Hint tag */
+        .open-hint {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: var(--adv-rose-deep);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ============================================================
+           INTERIOR DESIGN (CASA ABIERTA — 24 VENTANITAS)
+           ============================================================ */
+
+        .interior-face {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #fff9f6 0%, #ffedf2 100%);
+            border-radius: 12px;
+            border: 2px solid var(--adv-gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            padding: 20px 18px 25px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        [data-theme="dark"] .interior-face {
+            background: linear-gradient(180deg, #24141d 0%, #1a0b14 100%);
+            border-color: rgba(229, 185, 106, 0.4);
+        }
+
+        .interior-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px dashed rgba(201, 64, 107, 0.3);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .interior-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            color: var(--text-heading);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .interior-header .wing-badge {
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: rgba(240, 120, 157, 0.15);
+            color: var(--adv-rose-deep);
+            font-weight: 600;
+        }
+
+        /* 12 Windows per Wing (3 cols x 4 rows) */
+        .advent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            flex-grow: 1;
+        }
+
+        /* Window Compartment Box */
+        .advent-box {
+            position: relative;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            height: 108px;
+            perspective: 800px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+            border: 1px solid rgba(229, 185, 106, 0.3);
+        }
+
+        [data-theme="dark"] .advent-box {
+            background: rgba(0, 0, 0, 0.25);
+            border-color: rgba(229, 185, 106, 0.2);
+        }
+
+        .advent-box:hover {
+            transform: translateY(-2px);
+            border-color: var(--adv-gold);
+        }
+
+        /* The Hidden Inside Content */
+        .box-inside {
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            background: radial-gradient(circle, #fff7fa 0%, #ffe4ec 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        [data-theme="dark"] .box-inside {
+            background: radial-gradient(circle, #381a29 0%, #200d17 100%);
+        }
+
+        .box-inside .inside-icon {
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+        }
+
+        .box-inside .inside-name {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            line-height: 1.15;
+            max-width: 90%;
+        }
+
+        .box-inside .inside-tag {
+            font-size: 0.6rem;
+            color: var(--adv-rose-deep);
+            margin-top: 3px;
+            font-weight: 600;
+        }
+
+        /* The Door (Ventanita con apertura 3D) */
+        .box-door {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #ffffff 0%, #fdf2f6 100%);
+            border: 1.5px solid var(--adv-gold);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+            z-index: 2;
+            backface-visibility: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
+
+        [data-theme="dark"] .box-door {
+            background: linear-gradient(135deg, #38202d 0%, #25121c 100%);
+        }
+
+        /* Gold Day Number */
+        .door-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #b8860b 0%, #e5b96a 50%, #996515 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .door-deco {
+            font-size: 0.75rem;
+            color: var(--adv-rose);
+            margin-top: 2px;
+        }
+
+        .door-knob {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--adv-gold);
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        /* State: Door Opened */
+        .advent-box.is-opened .box-door {
+            transform: rotateY(-130deg);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.15);
+        }
+
+        /* Special Highlights for Big Days (Day 24) */
+        .advent-box.special-grand {
+            border: 2px solid #e5b96a;
+            box-shadow: 0 0 15px rgba(229, 185, 106, 0.35);
+        }
+
+        .advent-box.special-grand .box-door {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-color: #d4af37;
+        }
+
+        [data-theme="dark"] .advent-box.special-grand .box-door {
+            background: linear-gradient(135deg, #593510 0%, #3d2208 100%);
+        }
+
+        .advent-box.special-grand .door-number {
+            font-size: 1.9rem;
+            background: linear-gradient(135deg, #d4af37 0%, #fff2a3 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Progress tracker */
+        .adv-progress-wrap {
+            max-width: 600px;
+            margin: 20px auto 0;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(240, 120, 157, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        [data-theme="dark"] .adv-progress-wrap {
+            background: rgba(40, 20, 30, 0.6);
+        }
+
+        .adv-progress-bar {
+            flex-grow: 1;
+            height: 8px;
+            background: rgba(0,0,0,0.06);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .adv-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #f0789d, #e5b96a);
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        .adv-progress-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            white-space: nowrap;
+        }
+
+        /* ============================================================
+           PHYSICAL SHOWCASE & SPECS SECTION
+           ============================================================ */
+
+        .specs-section {
+            padding: 80px 20px;
+            background: var(--bg-primary);
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 900px) {
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .specs-img-frame {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.12);
+            border: 2px solid rgba(229, 185, 106, 0.3);
+        }
+
+        .specs-img-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .specs-img-frame:hover img {
+            transform: scale(1.03);
+        }
+
+        .specs-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--adv-burgundy);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .specs-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            color: var(--text-heading);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .specs-content p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .spec-pills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .spec-pills {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .spec-pill {
+            background: var(--bg-card);
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        [data-theme="dark"] .spec-pill {
+            background: rgba(30, 15, 25, 0.7);
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        .spec-pill i {
+            color: var(--adv-rose);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .spec-pill h4 {
+            font-size: 0.95rem;
+            margin: 0 0 4px;
+            color: var(--text-heading);
+        }
+
+        .spec-pill span {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+            display: block;
+        }
+
+        /* ============================================================
+           PRE-ORDER / PRICING CARDS
+           ============================================================ */
+
+        .pricing-section {
+            padding: 70px 20px;
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            text-align: center;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 40px auto 0;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 35px 25px;
+            border: 1px solid rgba(240, 120, 157, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(240, 120, 157, 0.15);
+        }
+
+        .pricing-card.featured {
+            border: 2px solid var(--adv-gold);
+            background: linear-gradient(180deg, #ffffff 0%, #fffbf2 100%);
+        }
+
+        [data-theme="dark"] .pricing-card.featured {
+            background: linear-gradient(180deg, #2b1824 0%, #22101b 100%);
+        }
+
+        .pricing-card .badge-top {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #d4af37, #b8860b);
+            color: white;
+            padding: 5px 18px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: var(--text-heading);
+        }
+
+        .pricing-card .price-row {
+            margin: 20px 0;
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .pricing-card .price-val {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--adv-rose-deep);
+        }
+
+        .pricing-card .price-old {
+            text-decoration: line-through;
+            color: var(--neutral-400);
+            font-size: 1.1rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        .pricing-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+        }
+
+        .pricing-card ul li i {
+            color: #2e7d32;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+           MODAL DE DETALLE DE LA VENTANITA
+           ============================================================ */
+
+        .adv-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .adv-modal.is-active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .adv-modal-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            max-width: 480px;
+            width: 100%;
+            padding: 35px 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            border: 2px solid var(--adv-gold);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .adv-modal.is-active .adv-modal-card {
+            transform: scale(1);
+        }
+
+        .adv-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: color 0.2s;
+        }
+
+        .adv-modal-close:hover {
+            color: var(--adv-rose);
+        }
+
+        .modal-day-pill {
+            display: inline-block;
+            background: var(--adv-gold-light);
+            color: var(--adv-gold-dark);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal-gift-icon {
+            font-size: 3.5rem;
+            margin-bottom: 12px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+            animation: bounce-icon 2s infinite ease-in-out;
+        }
+
+        @keyframes bounce-icon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: var(--text-heading);
+            margin-bottom: 10px;
+        }
+
+        .modal-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .modal-bonus-box {
+            background: rgba(240, 120, 157, 0.08);
+            border: 1px dashed var(--adv-rose);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            color: var(--adv-rose-deep);
+            font-weight: 600;
+        }
+
+        .modal-cta-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            text-decoration: none;
+            padding: 14px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.35);
+            transition: all 0.3s ease;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .modal-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        /* Responsive Mobile tweaks */
+        @media (max-width: 768px) {
+            .cottage-book.is-open {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .cottage-book.is-open .left-panel,
+            .cottage-book.is-open .right-panel {
+                transform: none !important;
+                margin-bottom: 20px;
+            }
+
+            .book-spine {
+                display: none !important;
+            }
+
+            .advent-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 8px;
+            }
+
+            .advent-box {
+                height: 90px;
+            }
+
+            .door-number {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Snowfall Canvas -->
+    <canvas id="snow-canvas"></canvas>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-frame">
+                    <img src="images/Logo.jpeg" alt="ACH_Details Logo" class="logo-img">
+                </div>
+                <span class="logo-text">ACH_Details</span>
+            </a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html#inicio">Inicio</a></li>
+                <li><a href="index.html#catalogo">Catálogo</a></li>
+                <li><a href="adviento.html" class="nav-link-adviento"><i data-lucide="gift"></i> Calendario Adviento</a></li>
+                <li><a href="madre.html" class="nav-link-special"><i data-lucide="flower-2"></i> Día de la Madre</a></li>
+                <li><a href="padre.html" class="nav-link-father"><i data-lucide="briefcase"></i> Día del Padre</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button id="snow-toggle" aria-label="Alternar nieve" title="Efecto Nieve"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="snowflake"></i>
+                </button>
+                <button id="theme-toggle" aria-label="Cambiar modo oscuro"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="moon"></i>
+                </button>
+                <button id="music-toggle" aria-label="Reproducir música"
+                    style="background:none; border:none; color:var(--text-secondary); cursor:pointer; padding:5px; transition:color 0.3s; z-index:1001;">
+                    <i data-lucide="volume-x"></i>
+                </button>
+                <audio id="bg-audio" src="so-easy.mp3" autoplay loop></audio>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Abrir menú de navegación">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== HERO SECTION ========== -->
+    <header class="adv-hero">
+        <div class="container">
+            <span class="adv-hero-badge">
+                <i data-lucide="sparkles"></i> Edición Limitada Navideña &bull; Rosas Eternas
+            </span>
+            <h1>La Mansión de las <span class="gold-text">Rosas Eternas</span></h1>
+            <p>
+                Un Calendario de Adviento único en Lima: diseñado con la silueta de una cálida casita victoriana que se abre como un libro de cuentos, revelando 24 ventanitas con rosas preservadas, delicias gourmet y detalles inolvidables.
+            </p>
+
+            <div class="adv-controls-bar">
+                <button class="btn-adv-primary" id="btn-toggle-book">
+                    <i data-lucide="book-open"></i> <span id="toggle-book-text">Abrir la Casita</span>
+                </button>
+                <button class="btn-adv-secondary" id="btn-open-all-doors">
+                    <i data-lucide="key"></i> Abrir Todas las Ventanitas
+                </button>
+                <a href="#preventa" class="btn-adv-secondary">
+                    <i data-lucide="calendar"></i> Ver Precios de Preventa
+                </a>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="adv-progress-wrap">
+                <div class="adv-progress-text">
+                    <span id="opened-count">0</span> de 24 sorpresas descubiertas
+                </div>
+                <div class="adv-progress-bar">
+                    <div class="adv-progress-fill" id="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== INTERACTIVE 3D COTTAGE BOOK SECTION ========== -->
+    <section class="cottage-stage" id="experiencia-3d">
+        <!-- The Book/House Container. Starts CLOSED -->
+        <div class="cottage-book is-closed" id="cottage-book">
+
+            <!-- Center Spine when opened -->
+            <div class="book-spine"></div>
+
+            <!-- ================= LEFT PANEL / COVER ================= -->
+            <div class="book-panel left-panel">
+
+                <!-- 1. CLOSED FACADE FACE (Se muestra cuando está cerrado) -->
+                <div class="house-facade facade-face" id="facade-trigger" title="Haz clic para abrir la casita como un libro">
+                    
+                    <!-- Roof & Chimney -->
+                    <div class="facade-chimney"></div>
+                    <div class="facade-roof">
+                        <div class="roof-cresting">
+                            <span>❄</span> ACH &bull; DETAILS <span>❄</span>
+                        </div>
+                    </div>
+
+                    <!-- Facade Heading -->
+                    <div class="facade-ornament">
+                        <div class="facade-subtitle">Atelier Floral de Navidad</div>
+                        <h2 class="facade-title">La Casa de las Rosas</h2>
+                        <div style="font-size: 0.8rem; color: var(--adv-gold-dark);">24 DÍAS DE MAGIA ETERNA</div>
+                    </div>
+
+                    <!-- Glowing Windows -->
+                    <div class="facade-windows-grid">
+                        <div class="facade-window"><div class="window-glow"></div></div>
+                        <div class="facade-window"><div class="window-glow"></div></div>
+                        <div class="facade-window"><div class="window-glow"></div></div>
+                        <div class="facade-window"><div class="window-glow"></div></div>
+                    </div>
+
+                    <!-- Front Door with Wreath -->
+                    <div class="facade-door-area">
+                        <div class="facade-door">
+                            <div class="door-wreath"></div>
+                            <div class="door-handle"></div>
+                        </div>
+                        <div class="open-hint">
+                            <i data-lucide="touchpad"></i> Toca aquí o desata el lazo para abrir
+                        </div>
+                    </div>
+
+                    <!-- Ribbon Lazo Cierre -->
+                    <div class="ribbon-strap" id="ribbon-btn">
+                        <i data-lucide="gift"></i> Desatar Lazo
+                    </div>
+                </div>
+
+                <!-- 2. INTERIOR LEFT FACE (Días 1 al 12) -->
+                <div class="interior-face">
+                    <div class="interior-header">
+                        <h3><i data-lucide="sparkles" style="color:var(--adv-gold);"></i> Ala Izquierda</h3>
+                        <span class="wing-badge">Días 1 al 12 &bull; Recuerdos Dulces</span>
+                    </div>
+
+                    <div class="advent-grid" id="grid-wing-1">
+                        <!-- Days 1 to 12 generated by JS -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ================= RIGHT PANEL (Días 13 al 24) ================= -->
+            <div class="book-panel right-panel">
+                <div class="interior-face">
+                    <div class="interior-header">
+                        <h3><i data-lucide="crown" style="color:var(--adv-gold);"></i> Ala Derecha</h3>
+                        <span class="wing-badge">Días 13 al 24 &bull; La Gran Nochebuena</span>
+                    </div>
+
+                    <div class="advent-grid" id="grid-wing-2">
+                        <!-- Days 13 to 24 generated by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========== PHYSICAL PRODUCT & TECHNICAL SPECS ========== -->
+    <section class="specs-section" id="especificaciones">
+        <div class="container">
+            <div class="specs-grid">
+                <div class="specs-img-frame">
+                    <div class="specs-badge">
+                        <i data-lucide="award"></i> Prototipo de Empaque Exclusivo
+                    </div>
+                    <img src="images/advent_calendar_house.jpg" alt="Prototipo Calendario de Adviento Casita ACH Details">
+                </div>
+
+                <div class="specs-content">
+                    <span class="adv-hero-badge">
+                        <i data-lucide="box"></i> Guía Técnica de Fabricación
+                    </span>
+                    <h2>Diseño Estructural de la Caja-Libro</h2>
+                    <p>
+                        Diseñada especialmente para ACH Details como una pieza de coleccionista. Puede exhibirse de pie en la sala o el dormitorio durante toda la temporada navideña gracias a su base rígida reforzada.
+                    </p>
+
+                    <div class="spec-pills">
+                        <div class="spec-pill">
+                            <i data-lucide="maximize-2"></i>
+                            <div>
+                                <h4>Dimensiones Exactas</h4>
+                                <span>Cerrada: 34cm (alto) &times; 24cm &times; 9cm fondo.<br>Abierta: 34cm &times; 48cm desplegada a 180°.</span>
+                            </div>
+                        </div>
+
+                        <div class="spec-pill">
+                            <i data-lucide="layers"></i>
+                            <div>
+                                <h4>Materiales de Alta Gama</h4>
+                                <span>Cartón prensado rígido Kappa calibre 2.5mm con laminado Soft-Touch aterciopelado rosa pastel.</span>
+                            </div>
+                        </div>
+
+                        <div class="spec-pill">
+                            <i data-lucide="sparkle"></i>
+                            <div>
+                                <h4>Acabados de Lujo</h4>
+                                <span>Hot-stamping en pan de oro brillante para molduras, números romanos/arábigos y logo ACH Details.</span>
+                            </div>
+                        </div>
+
+                        <div class="spec-pill">
+                            <i data-lucide="shield-check"></i>
+                            <div>
+                                <h4>Cierre Magnético & Lazo</h4>
+                                <span>Solapa con 4 imanes invisibles de neodimio y lazo desmontable en cinta de raso rosa de 25mm.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/51946759953?text=Hola%20ACH%20Details%2C%20quisiera%20solicitar%20la%20ficha%20técnica%20y%20hacer%20una%20reserva%20del%20Calendario%20de%20Adviento" 
+                       class="btn-adv-primary" target="_blank">
+                        <i data-lucide="message-circle"></i> Coordinar Fabricación / Pedido por WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PRE-ORDER & PRICING ========== -->
+    <section class="pricing-section" id="preventa">
+        <div class="container">
+            <span class="adv-hero-badge">
+                <i data-lucide="tag"></i> Pre-Venta Navideña 2026 en Lima
+            </span>
+            <h2 style="font-family:'Playfair Display', serif; font-size:2.4rem; color:var(--text-heading); margin-bottom:10px;">
+                Reserva Tu Calendario con Descuento Anticipado
+            </h2>
+            <p style="color:var(--text-secondary); max-width:600px; margin:0 auto;">
+                Unidades estrictamente limitadas y numeradas a mano. Envío a todos los distritos de Lima Metropolitana.
+            </p>
+
+            <div class="pricing-grid">
+                <!-- Option 1: 12 Días Express -->
+                <div class="pricing-card">
+                    <h3>Cottage Express</h3>
+                    <p style="color:var(--text-secondary); font-size:0.88rem;">Los 12 Días Mágicos de Navidad</p>
+                    <div class="price-row">
+                        <span class="price-val">S/ 189</span>
+                        <span class="price-old">S/ 230</span>
+                    </div>
+                    <ul>
+                        <li><i data-lucide="check"></i> 12 ventanas con sorpresas seleccionadas</li>
+                        <li><i data-lucide="check"></i> 4 minirrosas preservadas en frasquitos</li>
+                        <li><i data-lucide="check"></i> Chocolates artesanales Ferrero & trufas</li>
+                        <li><i data-lucide="check"></i> 1 Rosa Eterna Mediana protagonista</li>
+                        <li><i data-lucide="check"></i> Tarjeta dedicatoria caligrafiada</li>
+                    </ul>
+                    <a href="https://wa.me/51946759953?text=Hola%20ACH%20Details%2C%20deseo%20reservar%20el%20Calendario%20Cottage%20Express%20(12%20Días%20-%20S/%20189)"
+                       class="btn-adv-secondary" style="justify-content:center;" target="_blank">
+                        <i data-lucide="calendar"></i> Reservar Express
+                    </a>
+                </div>
+
+                <!-- Option 2: 24 Días Full (Featured) -->
+                <div class="pricing-card featured">
+                    <span class="badge-top">🌟 La Experiencia Completa</span>
+                    <h3>Mansión Imperial</h3>
+                    <p style="color:var(--text-secondary); font-size:0.88rem;">24 Días de Encanto Floral Diario</p>
+                    <div class="price-row">
+                        <span class="price-val">S/ 299</span>
+                        <span class="price-old">S/ 360</span>
+                    </div>
+                    <ul>
+                        <li><i data-lucide="check"></i> <strong>24 días completos</strong> de sorpresas diarias</li>
+                        <li><i data-lucide="check"></i> 8 capullos de rosas preservadas multicolores</li>
+                        <li><i data-lucide="check"></i> Vela aromática de cera de soja floral</li>
+                        <li><i data-lucide="check"></i> Dije / amuleto bañado con rosa grabada</li>
+                        <li><i data-lucide="check"></i> <strong>Día 24:</strong> La Rosa Eterna Joya Red Velvet</li>
+                        <li><i data-lucide="check"></i> Luces LED de hadas incluidas para la casita</li>
+                    </ul>
+                    <a href="https://wa.me/51946759953?text=Hola%20ACH%20Details%2C%20deseo%20reservar%20el%20Calendario%20Mansión%20Imperial%20(24%20Días%20-%20S/%20299)"
+                       class="btn-adv-primary" style="justify-content:center;" target="_blank">
+                        <i data-lucide="star"></i> Reservar Mansión Completa
+                    </a>
+                </div>
+
+                <!-- Option 3: Personalizado VIP -->
+                <div class="pricing-card">
+                    <h3>Edición Personalizada VIP</h3>
+                    <p style="color:var(--text-secondary); font-size:0.88rem;">Crea tu historia de amor propia</p>
+                    <div class="price-row">
+                        <span class="price-val">S/ 349</span>
+                        <span class="price-old">S/ 420</span>
+                    </div>
+                    <ul>
+                        <li><i data-lucide="check"></i> 24 días personalizados con tus fotos/frases</li>
+                        <li><i data-lucide="check"></i> Tú eliges la paleta de colores de las rosas</li>
+                        <li><i data-lucide="check"></i> Placa dorada grabada con nombre o iniciales</li>
+                        <li><i data-lucide="check"></i> Perfume floral exclusivo de ambiente (15ml)</li>
+                        <li><i data-lucide="check"></i> Empaque de regalo con lazo de terciopelo de seda</li>
+                    </ul>
+                    <a href="https://wa.me/51946759953?text=Hola%20ACH%20Details%2C%20deseo%20personalizar%20un%20Calendario%20de%20Adviento%20VIP"
+                       class="btn-adv-secondary" style="justify-content:center;" target="_blank">
+                        <i data-lucide="edit-3"></i> Personalizar el Mío
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 ACH_Details. Rosas que perduran por siempre. Lima, Perú.</p>
+                <div style="display:flex; gap:20px; justify-content:center; margin-top:10px;">
+                    <a href="index.html" style="color: var(--adv-rose); text-decoration: underline;">Catálogo General</a>
+                    <a href="madre.html" style="color: var(--adv-rose); text-decoration: underline;">Día de la Madre</a>
+                    <a href="padre.html" style="color: var(--adv-rose); text-decoration: underline;">Día del Padre</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== SURPRISE MODAL ========== -->
+    <div class="adv-modal" id="surprise-modal">
+        <div class="adv-modal-card">
+            <button class="adv-modal-close" id="modal-close-btn">&times;</button>
+            <div class="modal-day-pill" id="modal-day-pill">DÍA 1 &bull; 1 DE DICIEMBRE</div>
+            <div class="modal-gift-icon" id="modal-icon">🌹</div>
+            <h3 class="modal-title" id="modal-title">Mini Cúpula con Rosa Eterna</h3>
+            <p class="modal-desc" id="modal-desc">
+                Una delicada rosa preservada encapsulada en vidrio mini que durará intacta durante más de 3 años, símbolo del amor eterno.
+            </p>
+            <div class="modal-bonus-box" id="modal-bonus">
+                🎁 <strong>Beneficio Digital:</strong> Código <span style="font-family:monospace; background:#fff; padding:2px 6px; border-radius:4px;">NAVIDADACH</span> para 10% OFF en ramos de catálogo.
+            </div>
+            <a href="#" class="modal-cta-btn" id="modal-wa-btn" target="_blank">
+                <i data-lucide="message-circle"></i> Consultar este detalle por WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="script.js"></script>
+    <script>
+        /* ============================================================
+           DATA FOR THE 24 ADVENT DAYS
+           ============================================================ */
+        const adventDaysData = [
+            { day: 1, icon: "🌹", title: "Minirrosa Eterna en Frasco", desc: "Un capullo de rosa preservada color rosa pastel en un frasquito de boticario de cristal con lazo dorado.", bonus: "Descuento 10% en catálogo con código NAVIDAD1" },
+            { day: 2, icon: "🍫", title: "Bombón Ferrero Rocher Dorado", desc: "La clásica esfera crujiente de avellana y chocolate con cobertura en pan de oro comestible.", bonus: "Endulza tu día con un detalle especial" },
+            { day: 3, icon: "✨", title: "Frasco de Pétalos Aromáticos", desc: "Pétalos de rosas deshidratadas y perfumadas con la esencia exclusiva de vainilla y rosas de ACH Details.", bonus: "Aroma duradero para tu tocador o automóvil" },
+            { day: 4, icon: "💌", title: "Carta de Amor & Cera Sellada", desc: "Una tarjeta caligrafiada en papel de algodón con un sobre lacrado con el sello botánico de ACH.", bonus: "Personalizable con tu propio mensaje de amor" },
+            { day: 5, icon: "🌿", title: "Ramillete de Gypsophila Eterna", desc: "Un bouquet en miniatura de lluvia de estrellas blanca preservada, perfecta para floreros pequeños.", bonus: "Flores 100% naturales que no necesitan agua" },
+            { day: 6, icon: "🕯️", title: "Vela Tea Light de Soja", desc: "Vela artesanal vertida a mano con cera de soja orgánica y fragancia cálida a canela navideña.", bonus: "Tiempo de quemado: 5 horas de luz suave" },
+            { day: 7, icon: "💎", title: "Dije Floral Bañado en Oro", desc: "Un delicado colgante en forma de rosa tridimensional con baño de oro de 18k para cadena o pulsera.", bonus: "Joya especial de colección ACH Details" },
+            { day: 8, icon: "🍯", title: "Minimiel de Flores Silvestres", desc: "Frasquito hexagonal de miel pura de abejas andinas con mini cucharón de madera.", bonus: "100% natural recolectada artesanalmente" },
+            { day: 9, icon: "🌸", title: "Rosa Preservada White Pearl", desc: "Rosa blanca pura preservada con tratamiento perlado que destella con la luz tenue de las velas.", bonus: "Símbolo de paz y nuevos comienzos" },
+            { day: 10, icon: "🎀", title: "Lazo de Seda & Pin Dorado", desc: "Precioso lazo de satén francés color champagne con broche de perla cultivada.", bonus: "Accesorio ideal para el cabello o solapa" },
+            { day: 11, icon: "🍬", title: "Trufas Belgas de Frambuesa", desc: "Dúo de trufas suaves de cacao con relleno de ganache de frambuesas silvestres.", bonus: "Maridaje perfecto para una tarde festiva" },
+            { day: 12, icon: "🔮", title: "Esfera de Vidrio con Flor de Arroz", desc: "Burbuja de cristal transparente con ramillete de flor de arroz preservada en tono rosa blush.", bonus: "Lista para colgar en el árbol de Navidad" },
+            { day: 13, icon: "🌺", title: "Rosa Eterna Baby Pink", desc: "Capullo de rosa tono rosa suave con base en relieve floral para colocar en cualquier mesa.", bonus: "No requiere luz solar ni mantenimiento" },
+            { day: 14, icon: "📜", title: "Pergamino con Cupón S/ 25", desc: "Un vale regalo de S/ 25 canjeable en cualquier ramo de nuestra colección 2027.", bonus: "Canjeable enviando tu captura al WhatsApp" },
+            { day: 15, icon: "🫖", title: "Infusión Gourmet de Rosa & Frutos", desc: "Mezcla de té blanco, pétalos de rosa y frutos rojos deshidratados en bolsita de muselina.", bonus: "Rinde 3 tazas relajantes y aromáticas" },
+            { day: 16, icon: "🌟", title: "Luces LED Micro Hada Cálidas", desc: "Tira de 1 metro de alambre de cobre con microLEDs a batería para iluminar tu casita de adviento.", bonus: "Crea un ambiente mágico al anochecer" },
+            { day: 17, icon: "🧴", title: "Aceite Floral para Cutículas", desc: "Elixir hidratante con vitamina E y macerado con diminutos capullos de rosas naturales.", bonus: "Cuidado delicado para tus manos" },
+            { day: 18, icon: "🧸", title: "Mini Oso Peluche Festivo", desc: "Un adorable osito en miniatura con bufandita roja de lana tejido a mano.", bonus: "El compañero más tierno para tus flores" },
+            { day: 19, icon: "🌹", title: "Rosa Preservada Rojo Pasión", desc: "La clásica rosa roja terciopelo, preservada en su punto cúspide de apertura.", bonus: "La rosa más solicitada de ACH Details" },
+            { day: 20, icon: "🍪", title: "Galleta de Jengibre Especiada", desc: "Galleta artesanal en forma de casita con glaseado real y aroma a nuez moscada.", bonus: "Horneada por pastelería aliada en Lima" },
+            { day: 21, icon: "🏷️", title: "Etiquetas Botánicas de Regalo", desc: "Set de 4 tarjetas con foil dorado e ilustraciones florales para tus regalos de Nochebuena.", bonus: "Diseño vintage en cartulina Kraft texturizada" },
+            { day: 22, icon: "👑", title: "Corona Mini de Eucalipto & Rosa", desc: "Diminuta corona navideña hecha con ramas de eucalipto preservado y capullos fucsia.", bonus: "Aroma fresco y campestre para tu hogar" },
+            { day: 23, icon: "🍫", title: "Tableta de Chocolate con Pétalos", desc: "Chocolate blanco artesanal con incrustaciones de pétalos de rosa cristalizados y pistachos.", bonus: "Una experiencia culinaria de lujo" },
+            { day: 24, icon: "🏆", title: "La Gran Rosa Eterna Real Red Velvet", desc: "¡El tesoro del adviento! Una magnífica Rosa Eterna tamaño XL grado A, con cáliz bañado en oro y base de mármol, enmarcada con luces.", bonus: "🌟 Pieza estelar de coleccionista ACH Details" }
+        ];
+
+        /* ============================================================
+           INITIALIZATION & 3D HOUSE LOGIC
+           ============================================================ */
+        document.addEventListener('DOMContentLoaded', () => {
+            const cottageBook = document.getElementById('cottage-book');
+            const btnToggleBook = document.getElementById('btn-toggle-book');
+            const toggleBookText = document.getElementById('toggle-book-text');
+            const ribbonBtn = document.getElementById('ribbon-btn');
+            const facadeTrigger = document.getElementById('facade-trigger');
+            const btnOpenAll = document.getElementById('btn-open-all-doors');
+            const openedCountEl = document.getElementById('opened-count');
+            const progressFillEl = document.getElementById('progress-fill');
+
+            const gridWing1 = document.getElementById('grid-wing-1');
+            const gridWing2 = document.getElementById('grid-wing-2');
+
+            // Modal elements
+            const modal = document.getElementById('surprise-modal');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const modalDayPill = document.getElementById('modal-day-pill');
+            const modalIcon = document.getElementById('modal-icon');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDesc = document.getElementById('modal-desc');
+            const modalBonus = document.getElementById('modal-bonus');
+            const modalWaBtn = document.getElementById('modal-wa-btn');
+
+            let openedDoors = new Set();
+
+            // Populate the 24 advent boxes
+            adventDaysData.forEach((item) => {
+                const box = document.createElement('div');
+                box.className = `advent-box ${item.day === 24 ? 'special-grand' : ''}`;
+                box.dataset.day = item.day;
+
+                box.innerHTML = `
+                    <div class="box-inside">
+                        <div class="inside-icon">${item.icon}</div>
+                        <div class="inside-name">${item.title}</div>
+                        <div class="inside-tag">Ver detalle &bull;</div>
+                    </div>
+                    <div class="box-door">
+                        <div class="door-number">${item.day}</div>
+                        <div class="door-deco">${item.day === 24 ? '👑' : '❄'}</div>
+                        <div class="door-knob"></div>
+                    </div>
+                `;
+
+                // Add to appropriate wing
+                if (item.day <= 12) {
+                    gridWing1.appendChild(box);
+                } else {
+                    gridWing2.appendChild(box);
+                }
+
+                // Click event on door
+                box.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleDoor(box, item);
+                });
+            });
+
+            // Toggle Book Open / Close
+            function openBook() {
+                cottageBook.classList.remove('is-closed');
+                cottageBook.classList.add('is-open');
+                toggleBookText.textContent = "Cerrar la Casita";
+                btnToggleBook.innerHTML = '<i data-lucide="book"></i> <span id="toggle-book-text">Cerrar la Casita</span>';
+                lucide.createIcons();
+                confetti({
+                    particleCount: 50,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+
+            function closeBook() {
+                cottageBook.classList.remove('is-open');
+                cottageBook.classList.add('is-closed');
+                toggleBookText.textContent = "Abrir la Casita";
+                btnToggleBook.innerHTML = '<i data-lucide="book-open"></i> <span id="toggle-book-text">Abrir la Casita</span>';
+                lucide.createIcons();
+            }
+
+            btnToggleBook.addEventListener('click', () => {
+                if (cottageBook.classList.contains('is-closed')) {
+                    openBook();
+                } else {
+                    closeBook();
+                }
+            });
+
+            ribbonBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                openBook();
+            });
+
+            facadeTrigger.addEventListener('click', () => {
+                openBook();
+            });
+
+            // Open Single Door logic
+            function toggleDoor(boxEl, data) {
+                const dayNum = data.day;
+                const isOpened = boxEl.classList.contains('is-opened');
+
+                if (!isOpened) {
+                    boxEl.classList.add('is-opened');
+                    openedDoors.add(dayNum);
+                    updateProgress();
+
+                    // Mini confetti blast from element
+                    const rect = boxEl.getBoundingClientRect();
+                    const x = (rect.left + rect.width / 2) / window.innerWidth;
+                    const y = (rect.top + rect.height / 2) / window.innerHeight;
+                    confetti({
+                        particleCount: 30,
+                        spread: 50,
+                        origin: { x, y },
+                        colors: ['#f0789d', '#e5b96a', '#ffffff', '#2e7d32']
+                    });
+                }
+
+                // Show detailed modal
+                showModal(data);
+            }
+
+            // Open All / Reset
+            btnOpenAll.addEventListener('click', () => {
+                if (cottageBook.classList.contains('is-closed')) {
+                    openBook();
+                }
+
+                const allBoxes = document.querySelectorAll('.advent-box');
+                const allOpened = openedDoors.size === 24;
+
+                if (allOpened) {
+                    // Close all
+                    allBoxes.forEach(b => b.classList.remove('is-opened'));
+                    openedDoors.clear();
+                    btnOpenAll.innerHTML = '<i data-lucide="key"></i> Abrir Todas las Ventanitas';
+                } else {
+                    // Open all
+                    allBoxes.forEach(b => {
+                        b.classList.add('is-opened');
+                        openedDoors.add(parseInt(b.dataset.day));
+                    });
+                    btnOpenAll.innerHTML = '<i data-lucide="lock"></i> Cerrar Ventanitas';
+                    confetti({
+                        particleCount: 100,
+                        spread: 100,
+                        origin: { y: 0.5 }
+                    });
+                }
+                updateProgress();
+                lucide.createIcons();
+            });
+
+            function updateProgress() {
+                const count = openedDoors.size;
+                openedCountEl.textContent = count;
+                const pct = (count / 24) * 100;
+                progressFillEl.style.width = pct + '%';
+            }
+
+            // Modal display
+            function showModal(data) {
+                modalDayPill.textContent = `DÍA ${data.day} &bull; ${data.day} DE DICIEMBRE`;
+                modalIcon.textContent = data.icon;
+                modalTitle.textContent = data.title;
+                modalDesc.textContent = data.desc;
+                modalBonus.innerHTML = `🎁 <strong>Sorpresa:</strong> ${data.bonus}`;
+                
+                const msg = encodeURIComponent(`Hola ACH Details, me encantó el Día ${data.day} (${data.title}) del Calendario de Adviento. ¿Tienen disponibilidad para reservar?`);
+                modalWaBtn.href = `https://wa.me/51946759953?text=${msg}`;
+
+                modal.classList.add('is-active');
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-active');
+            }
+
+            modalCloseBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // ============================================================
+            // REALISTIC SNOWFALL CANVAS
+            // ============================================================
+            const canvas = document.getElementById('snow-canvas');
+            const ctx = canvas.getContext('2d');
+            let snowActive = true;
+            let width = (canvas.width = window.innerWidth);
+            let height = (canvas.height = window.innerHeight);
+
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const flakeCount = 55;
+            const flakes = [];
+
+            for (let i = 0; i < flakeCount; i++) {
+                flakes.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    r: Math.random() * 2.5 + 1,
+                    speedY: Math.random() * 0.9 + 0.4,
+                    speedX: Math.random() * 0.6 - 0.3,
+                    opacity: Math.random() * 0.7 + 0.3
+                });
+            }
+
+            function renderSnow() {
+                if (!snowActive) {
+                    ctx.clearRect(0, 0, width, height);
+                    return;
+                }
+                ctx.clearRect(0, 0, width, height);
+
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
+                for (let i = 0; i < flakes.length; i++) {
+                    const f = flakes[i];
+                    ctx.beginPath();
+                    ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2, false);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${f.opacity})`;
+                    ctx.fill();
+
+                    f.y += f.speedY;
+                    f.x += f.speedX;
+
+                    if (f.y > height) {
+                        f.y = -5;
+                        f.x = Math.random() * width;
+                    }
+                    if (f.x > width) f.x = 0;
+                    if (f.x < 0) f.x = width;
+                }
+                requestAnimationFrame(renderSnow);
+            }
+            renderSnow();
+
+            // Snow Toggle button
+            const snowToggle = document.getElementById('snow-toggle');
+            if (snowToggle) {
+                snowToggle.addEventListener('click', () => {
+                    snowActive = !snowActive;
+                    snowToggle.style.opacity = snowActive ? '1' : '0.4';
+                    if (snowActive) renderSnow();
+                });
+            }
+
+            lucide.createIcons();
+        });
+    </script>
+</body>
+
+</html>

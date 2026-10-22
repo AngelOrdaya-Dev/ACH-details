@@ -1164,6 +1164,28 @@ em {
     transform-origin: left;
 }
 
+.nav-links a.nav-link-adviento {
+    background: linear-gradient(135deg, #d84570, #c42b58);
+    color: #ffffff !important;
+    padding: 6px 14px !important;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    box-shadow: 0 4px 15px rgba(216, 69, 112, 0.35);
+    transition: all 0.3s ease;
+}
+
+.nav-links a.nav-link-adviento:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(216, 69, 112, 0.55);
+}
+
+.nav-links a.nav-link-adviento::after {
+    display: none !important;
+}
+
 .nav-toggle {
     display: none;
     flex-direction: column;
